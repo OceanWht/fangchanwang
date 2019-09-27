@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wht.springcloud.fangchanwang.mapper.HouseModelMapper" >
+  <resultMap id="BaseResultMap" type="com.wht.springcloud.fangchanwang.model.HouseModel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="beds" property="beds" jdbcType="INTEGER" />
+    <result column="baths" property="baths" jdbcType="INTEGER" />
+    <result column="rating" property="rating" jdbcType="DOUBLE" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="properties" property="properties" jdbcType="VARCHAR" />
+    <result column="floor_plan" property="floorPlan" jdbcType="VARCHAR" />
+    <result column="tags" property="tags" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="community_id" property="communityId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, type, price, images, area, beds, baths, rating, remarks, properties, floor_plan, 
+    tags, create_time, city_id, community_id, address, state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wht.springcloud.fangchanwang.model.HouseModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from house
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from house
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wht.springcloud.fangchanwang.model.HouseModelExample" >
+    delete from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wht.springcloud.fangchanwang.model.HouseModel" >
+    insert into house (id, name, type, price, 
+      images, area, beds, 
+      baths, rating, remarks, 
+      properties, floor_plan, tags, 
+      create_time, city_id, community_id, 
+      address, state)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, #{price,jdbcType=INTEGER}, 
+      #{images,jdbcType=VARCHAR}, #{area,jdbcType=INTEGER}, #{beds,jdbcType=INTEGER}, 
+      #{baths,jdbcType=INTEGER}, #{rating,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}, 
+      #{properties,jdbcType=VARCHAR}, #{floorPlan,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{cityId,jdbcType=INTEGER}, #{communityId,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{state,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wht.springcloud.fangchanwang.model.HouseModel" >
+    insert into house
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="beds != null" >
+        beds,
+      </if>
+      <if test="baths != null" >
+        baths,
+      </if>
+      <if test="rating != null" >
+        rating,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="properties != null" >
+        properties,
+      </if>
+      <if test="floorPlan != null" >
+        floor_plan,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="communityId != null" >
+        community_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="beds != null" >
+        #{beds,jdbcType=INTEGER},
+      </if>
+      <if test="baths != null" >
+        #{baths,jdbcType=INTEGER},
+      </if>
+      <if test="rating != null" >
+        #{rating,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="properties != null" >
+        #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="floorPlan != null" >
+        #{floorPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="communityId != null" >
+        #{communityId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wht.springcloud.fangchanwang.model.HouseModelExample" resultType="java.lang.Integer" >
+    select count(*) from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update house
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.images != null" >
+        images = #{record.images,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=INTEGER},
+      </if>
+      <if test="record.beds != null" >
+        beds = #{record.beds,jdbcType=INTEGER},
+      </if>
+      <if test="record.baths != null" >
+        baths = #{record.baths,jdbcType=INTEGER},
+      </if>
+      <if test="record.rating != null" >
+        rating = #{record.rating,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.properties != null" >
+        properties = #{record.properties,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorPlan != null" >
+        floor_plan = #{record.floorPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tags != null" >
+        tags = #{record.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.communityId != null" >
+        community_id = #{record.communityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update house
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=BIT},
+      price = #{record.price,jdbcType=INTEGER},
+      images = #{record.images,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=INTEGER},
+      beds = #{record.beds,jdbcType=INTEGER},
+      baths = #{record.baths,jdbcType=INTEGER},
+      rating = #{record.rating,jdbcType=DOUBLE},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      properties = #{record.properties,jdbcType=VARCHAR},
+      floor_plan = #{record.floorPlan,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      city_id = #{record.cityId,jdbcType=INTEGER},
+      community_id = #{record.communityId,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wht.springcloud.fangchanwang.model.HouseModel" >
+    update house
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="beds != null" >
+        beds = #{beds,jdbcType=INTEGER},
+      </if>
+      <if test="baths != null" >
+        baths = #{baths,jdbcType=INTEGER},
+      </if>
+      <if test="rating != null" >
+        rating = #{rating,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="properties != null" >
+        properties = #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="floorPlan != null" >
+        floor_plan = #{floorPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="communityId != null" >
+        community_id = #{communityId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wht.springcloud.fangchanwang.model.HouseModel" >
+    update house
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      price = #{price,jdbcType=INTEGER},
+      images = #{images,jdbcType=VARCHAR},
+      area = #{area,jdbcType=INTEGER},
+      beds = #{beds,jdbcType=INTEGER},
+      baths = #{baths,jdbcType=INTEGER},
+      rating = #{rating,jdbcType=DOUBLE},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      properties = #{properties,jdbcType=VARCHAR},
+      floor_plan = #{floorPlan,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      city_id = #{cityId,jdbcType=INTEGER},
+      community_id = #{communityId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      state = #{state,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
