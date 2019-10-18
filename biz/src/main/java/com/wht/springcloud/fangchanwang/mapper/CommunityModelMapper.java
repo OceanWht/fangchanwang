@@ -2,8 +2,9 @@ package com.wht.springcloud.fangchanwang.mapper;
 
 import com.wht.springcloud.fangchanwang.model.CommunityModel;
 import com.wht.springcloud.fangchanwang.model.CommunityModelExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommunityModelMapper {
     int countByExample(CommunityModelExample example);

@@ -2,8 +2,9 @@ package com.wht.springcloud.fangchanwang.mapper;
 
 import com.wht.springcloud.fangchanwang.model.HouseMsgModel;
 import com.wht.springcloud.fangchanwang.model.HouseMsgModelExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface HouseMsgModelMapper {
     int countByExample(HouseMsgModelExample example);

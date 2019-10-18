@@ -2,11 +2,9 @@ package com.wht.springcloud.fangchanwang.mapper;
 
 import com.wht.springcloud.fangchanwang.model.UserModel;
 import com.wht.springcloud.fangchanwang.model.UserModelExample;
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 public interface UserModelMapper {
     int countByExample(UserModelExample example);

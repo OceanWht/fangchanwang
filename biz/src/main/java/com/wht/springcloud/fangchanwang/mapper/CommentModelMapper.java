@@ -2,8 +2,9 @@ package com.wht.springcloud.fangchanwang.mapper;
 
 import com.wht.springcloud.fangchanwang.model.CommentModel;
 import com.wht.springcloud.fangchanwang.model.CommentModelExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommentModelMapper {
     int countByExample(CommentModelExample example);

@@ -2,8 +2,9 @@ package com.wht.springcloud.fangchanwang.mapper;
 
 import com.wht.springcloud.fangchanwang.model.BlogModel;
 import com.wht.springcloud.fangchanwang.model.BlogModelExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface BlogModelMapper {
     int countByExample(BlogModelExample example);

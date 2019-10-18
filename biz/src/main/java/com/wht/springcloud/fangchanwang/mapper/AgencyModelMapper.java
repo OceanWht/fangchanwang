@@ -2,8 +2,9 @@ package com.wht.springcloud.fangchanwang.mapper;
 
 import com.wht.springcloud.fangchanwang.model.AgencyModel;
 import com.wht.springcloud.fangchanwang.model.AgencyModelExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AgencyModelMapper {
     int countByExample(AgencyModelExample example);
