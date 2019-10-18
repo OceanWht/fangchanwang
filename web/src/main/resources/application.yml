@@ -1,0 +1,77 @@
+server:
+  port: 8099
+  servlet:
+    context-path: /wht_fcw
+spring:
+  druid:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_shangcheng?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+  #最大连接数
+    maxActive: 30
+  #最小连接数
+    minIdle: 5
+  #获取连接得最大等待时间
+    maxWait: 10000
+  #解决mysql8小时问题
+    validationQuery: SELECT 'X'
+  #空闲连接检查时间间隔
+    timeBetweenEvictionRunsMillis: 60000
+  #空闲连接最小空闲时间
+    minEvictableIdleTimeMillis: 300000
+  application:
+    name: wht_fcw
+#  datasource:
+#    name: mysql
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: root
+#    url: jdbc:mysql://localhost:3306/springcloud_shangcheng?useSSL=false&serverTimezone=HongKong&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      minimum-idle: 5
+#      maximum-pool-size: 15
+#      auto-commit: true
+ #     idle-timeout: 30000
+#      max-lifetime: 1800000
+#      connection-timeout: 30000
+#      connection-test-query: SELECT 1
+  #配置freemarker
+  freemarker:
+    charset: UTF-8
+    content-type: text/html;charset=UTF-8
+    # 设定所有request的属性在merge到模板的时候，是否要都添加到model中.
+    expose-request-attributes: true
+    # 是否在merge模板的时候，将HttpSession属性都添加到model中
+    expose-session-attributes: true
+    # 设定是否以springMacroRequestContext的形式暴露RequestContext给Spring’s macro library使用
+    expose-spring-macro-helpers: true
+    # 设定模板的后缀.
+    suffix: .ftl
+    # 设定FreeMarker keys.
+    settings:
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      default_encoding: UTF-8
+      auto_import: common/common.ftl as common
+      classic_compatible: true
+    # 是否启用freemarker
+    enabled: true
+    # 是否允许HttpServletRequest属性覆盖(隐藏)控制器生成的同名模型属性。
+    allow-request-override: false
+    # 是否允许HttpSession属性覆盖(隐藏)控制器生成的同名模型属性。
+    allow-session-override: false
+    # 是否检查模板位置是否存在。
+    check-template-location: true
+    # 是否优先从文件系统加载template，以支持热加载，默认为true
+    prefer-file-system-access: true
+    # 设定模板的加载路径，多个以逗号分隔，默认:
+    template-loader-path: classpath:/templates/
+    cache: false
+
+
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/**/*.xml
