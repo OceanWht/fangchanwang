@@ -1,5 +1,7 @@
 package com.wht.springcloud.fangchanwang.controller;
 
+import com.wht.springcloud.fangchanwang.autoconfig.AutoConfigDemo;
+import com.wht.springcloud.fangchanwang.autoconfig.AutoConfigDemoClass;
 import com.wht.springcloud.fangchanwang.model.UserModel;
 import com.wht.springcloud.fangchanwang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,20 @@ public class HelloController {
     @Autowired
     UserService userService;
 
+    /**
+     * 自动注解例子
+     */
+    @Autowired
+    AutoConfigDemo autoConfigDemo;
+
     @RequestMapping("/hello")
     public String hello(ModelMap modelMap){
         List<UserModel> userModels = userService.getAllUsers();
         UserModel userModel = userModels.get(0);
+        AutoConfigDemoClass configDemoClass = autoConfigDemo.autoConfigDemoClass();
+        /* if (userModel != null){
+            throw new IllegalArgumentException();
+        }*/
         modelMap.put("user",userModel);
         return "hello";
     }

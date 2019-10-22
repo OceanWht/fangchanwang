@@ -1,2 +1,2 @@
 #org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-#HttpClientAutoConfiguration
+#com.wht.springcloud.fangchanwang.autoconfig.AutoConfigDemo
