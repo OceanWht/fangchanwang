@@ -36,7 +36,7 @@
                                 <input type="radio" value="2" id="account-type-agent" name="type" required>经纪人
                             </label>
                         </div>
-                         <div id="agency" class="disabled">
+                        <div id="agency" class="disabled">
                             <div class="form-group">
                                 <label for="account-agency">选择经纪机构:</label>
                                 <select name="agencyId" id="agencyId">
@@ -45,7 +45,7 @@
                                         <option value="${agency.id}" >${agency.name}</option>
                                      </#list>
                                 </select>
-                            </div><!-- /.form-group -->
+                            </div><!-- /.form-group &ndash;&gt;-->
                         </div>
                         <hr>
                         <div class="form-group">
@@ -66,7 +66,7 @@
                         </div><!-- /.form-group -->
                         <div class="form-group">
                             <label for="form-create-account-confirm-password">确认密码:</label>
-                            <input type="password" class="form-control" id="form-create-account-confirm-password" name="confirmPasswd" required>
+                            <input type="password" class="form-control" id="form-create-account-confirm-password" name="confirmPassword" required>
                         </div><!-- /.form-group -->
                          <div class="form-group">
                             <label for="form-create-account-email">自我介绍:</label>

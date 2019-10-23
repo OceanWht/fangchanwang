@@ -1,5 +1,7 @@
 package com.wht.springcloud.fangchanwang.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 
 public class UserModel {
@@ -24,6 +26,15 @@ public class UserModel {
     private Boolean enable;
 
     private Integer agencyId;
+
+    private String confirmPassword;
+
+    private String newPassword;
+
+    private MultipartFile avatarFile;
+
+    private String key;
+
 
     public Long getId() {
         return id;
@@ -111,5 +122,37 @@ public class UserModel {
 
     public void setAgencyId(Integer agencyId) {
         this.agencyId = agencyId;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public MultipartFile getAvatarFile() {
+        return avatarFile;
+    }
+
+    public void setAvatarFile(MultipartFile avatarFile) {
+        this.avatarFile = avatarFile;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }
