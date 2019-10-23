@@ -85,4 +85,4 @@ wht:
 
 #上传文件路径
 file:
-  path: classpath:/upload/imgs
+  path: \upload\imgs
