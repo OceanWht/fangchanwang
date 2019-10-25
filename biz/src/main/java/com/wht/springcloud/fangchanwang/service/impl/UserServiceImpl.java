@@ -108,6 +108,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void verify(String key) {
+        String mail = regiestCache.getIfPresent(key);
+        System.out.println(mail);
+    }
+
     /**
      * 1.缓存KEY 与 Email的关系
      * 2.借助springmail 发送邮件

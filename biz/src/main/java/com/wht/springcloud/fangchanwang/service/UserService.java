@@ -8,4 +8,6 @@ public interface UserService {
     List<UserModel> getAllUsers();
 
     boolean addAccount(UserModel userModel);
+
+    void verify(String key);
 }
