@@ -21,6 +21,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.MessagingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -122,6 +123,10 @@ public class UserServiceImpl implements UserService {
         //先构造邮件地址
         String mailUrl = "http://"+domainName+"/accounts/verify?key="+randomKey;
         //发送邮件，引入spring mail pom文件
-        mailService.sendMail("激活邮件",mailUrl,email);
+        try {
+            mailService.sendMail("激活邮件",mailUrl,email);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
