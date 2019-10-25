@@ -22,14 +22,12 @@ public class MailService {
     @Value("${spring.mail.username}")
     private String mailUsername;
 
+    @Value("${domain.regiestCode}")
+    private String regiestCode;
+
+
     public void sendMail(String title, String mailUrl, String email) throws MessagingException {
         //构造邮件
-     /*   SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom(mailUsername);
-        simpleMailMessage.setTo(email);
-        simpleMailMessage.setText(mailUrl);
-        mailSender.send(simpleMailMessage);
-*/
 
         //构造SMTP邮件服务器的基本环境
         Properties properties = new Properties();
@@ -52,7 +50,7 @@ public class MailService {
 
         //发送邮件
         Transport transport = session.getTransport();
-        transport.connect("smtp.qq.com", email, "vuihiyaqklvvcajg");
+        transport.connect("smtp.qq.com", email, regiestCode);
         transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());//发送邮件，第二个参数为收件人
         transport.close();
     }
