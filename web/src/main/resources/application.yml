@@ -3,6 +3,17 @@ server:
   #servlet:
     #context-path: /wht_fcw
 spring:
+  mail:
+    host: mail.qq.com
+    username: 328295484@qq.com
+    password: oceanlovingu111q
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
   druid:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/springcloud_shangcheng?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
@@ -86,3 +97,6 @@ wht:
 #上传文件路径
 file:
   path: \upload\imgs
+
+domain:
+  name: 127.0.0.1:8099
