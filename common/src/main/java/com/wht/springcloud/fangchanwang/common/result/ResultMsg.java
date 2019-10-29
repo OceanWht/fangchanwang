@@ -2,7 +2,6 @@ package com.wht.springcloud.fangchanwang.common.result;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
-import net.sf.jsqlparser.statement.select.Join;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -64,7 +63,7 @@ public class ResultMsg {
     }
 
     /**
-     * 注册成功就虚量化成url地址
+     * 注册失败就虚量化成url地址
      *
      * @return
      */

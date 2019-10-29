@@ -30,4 +30,6 @@ public interface UserModelMapper {
     int updateByPrimaryKeySelective(UserModel record);
 
     int updateByPrimaryKey(UserModel record);
+
+    int updateByEmail(UserModel record);
 }

@@ -102,6 +102,7 @@ wht:
 #上传文件路径
 file:
   path: \upload\imgs
+  prefix: http://127.0.0.1:8081/images
 
 domain:
   name: 127.0.0.1:8099

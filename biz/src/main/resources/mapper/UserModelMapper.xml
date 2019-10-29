@@ -288,6 +288,37 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <update id="updateByEmail" parameterType="com.wht.springcloud.fangchanwang.model.UserModel" >
+    update user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="aboutme != null" >
+        aboutme = #{aboutme,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="enable != null" >
+        enable = #{enable,jdbcType=BIT},
+      </if>
+      <if test="agencyId != null" >
+        agency_id = #{agencyId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where email = #{email,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.wht.springcloud.fangchanwang.model.UserModel" >
     update user
     set name = #{name,jdbcType=VARCHAR},

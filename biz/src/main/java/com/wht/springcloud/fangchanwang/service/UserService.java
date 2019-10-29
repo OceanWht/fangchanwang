@@ -9,5 +9,7 @@ public interface UserService {
 
     boolean addAccount(UserModel userModel);
 
-    void verify(String key);
+    boolean enable(String key);
+
+    UserModel auth(String username, String password);
 }

@@ -2,7 +2,9 @@ package com.wht.springcloud.fangchanwang.controller;
 
 import com.google.common.base.Objects;
 import com.wht.springcloud.fangchanwang.common.result.ResultMsg;
+import com.wht.springcloud.fangchanwang.mapper.UserModelMapper;
 import com.wht.springcloud.fangchanwang.model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 public class UserHelper {
