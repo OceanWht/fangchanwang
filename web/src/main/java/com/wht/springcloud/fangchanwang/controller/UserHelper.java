@@ -28,12 +28,12 @@ public class UserHelper {
         return ResultMsg.successMsg("");
     }
 
-    public static ResultMsg validateResetPassword(String key, String password, String confirmPassword) {
-        if (StringUtils.isEmpty(key) || StringUtils.isEmpty(password) || StringUtils.isEmpty(confirmPassword)) {
+    public static ResultMsg validateResetPassword(String password, String newPassword, String confirmPassword) {
+        if (StringUtils.isEmpty(password) || StringUtils.isEmpty(newPassword) || StringUtils.isEmpty(confirmPassword)) {
             return ResultMsg.errorMsg("参数有误");
         }
-        if (!Objects.equal(password, confirmPassword)) {
-            return ResultMsg.errorMsg("密码必须与确认密码一致");
+        if (!Objects.equal(newPassword, confirmPassword)) {
+            return ResultMsg.errorMsg("新密码必须与确认密码一致");
         }
         return ResultMsg.successMsg("");
     }

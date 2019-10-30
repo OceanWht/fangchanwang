@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 文件服务器地址
      */
-    @Value("{$file.prefix}")
+    @Value("${file.prefix}")
     private String imgPrefix;
 
 
@@ -111,18 +111,39 @@ public class UserServiceImpl implements UserService {
     public UserModel auth(String username, String password) {
         UserModelExample example = new UserModelExample();
         UserModelExample.Criteria criteria = example.createCriteria();
+        String passwd = HashUtils.encryPwd(password);
         //根据用户密码且已激活 查询用户
-        criteria.andNameEqualTo(username).andPasswdEqualTo(HashUtils.encryPwd(password)).andEnableEqualTo(true);
+        criteria.andNameEqualTo(username).andPasswdEqualTo(passwd).andEnableEqualTo(true);
         List<UserModel> userModelList = userModelMapper.selectByExample(example);
         //设置上传 图片的地址
-        userModelList.forEach(userModel -> {
-            userModel.setAvatar(imgPrefix + userModel.getAvatar());
-        });
+
         UserModel userModel = null;
         if (!CollectionUtils.isEmpty(userModelList) && userModelList.size() != 0) {
+            userModelList.forEach(userModel1 -> {
+                String avatar = userModel1.getAvatar().replaceAll("\\\\","/");
+                userModel1.setAvatar(imgPrefix + userModel1.getAvatar());
+            });
             userModel = userModelList.get(0);
         }
         return userModel;
+    }
+
+    @Override
+    public void update(UserModel updateUser) {
+        userModelMapper.updateByEmail(updateUser);
+    }
+
+    @Override
+    public UserModel getUsersByquery(UserModel updateUser) {
+        UserModelExample example = new UserModelExample();
+        UserModelExample.Criteria criteria = example.createCriteria();
+        criteria.andEmailEqualTo(updateUser.getEmail());
+        List<UserModel> userModelList = userModelMapper.selectByExample(example);
+        if (userModelList != null && userModelList.size() != 0){
+            return userModelList.get(0);
+        }
+
+        return null;
     }
 
 

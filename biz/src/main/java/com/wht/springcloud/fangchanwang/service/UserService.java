@@ -12,4 +12,8 @@ public interface UserService {
     boolean enable(String key);
 
     UserModel auth(String username, String password);
+
+    void update(UserModel updateUser);
+
+    UserModel getUsersByquery(UserModel updateUser);
 }

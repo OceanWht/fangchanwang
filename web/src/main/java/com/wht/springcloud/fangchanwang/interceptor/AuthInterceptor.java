@@ -1,5 +1,6 @@
 package com.wht.springcloud.fangchanwang.interceptor;
 
+import com.google.common.base.Joiner;
 import com.wht.springcloud.fangchanwang.constants.CommonConstants;
 import com.wht.springcloud.fangchanwang.model.UserModel;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * HandlerInterceptor spring提供的拦截器接口
@@ -28,6 +30,12 @@ public class AuthInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        Map<String,String[]> map =  request.getParameterMap();
+        map.forEach((k,v)->{
+            if (k.equals("errorMsg") || k.equals("successMsg") || k.equals("target")){
+                request.setAttribute(k, Joiner.on(",").join(v));
+            }
+        });
         String reqUri = request.getRequestURI();
         if (reqUri.startsWith("/static") || reqUri.startsWith("/error")) {
             return true;

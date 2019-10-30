@@ -5,6 +5,7 @@ import com.wht.springcloud.fangchanwang.constants.CommonConstants;
 import com.wht.springcloud.fangchanwang.model.UserModel;
 import com.wht.springcloud.fangchanwang.service.AgencyService;
 import com.wht.springcloud.fangchanwang.service.UserService;
+import com.wht.springcloud.fangchanwang.utils.HashUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -110,9 +111,55 @@ public class UserController {
         return "redirect:/index";
     }
 
-    @RequestMapping(value = "/accounts/profile")
-    public String profile(ModelMap modelMap){
+    //-------------------------------------------个人信息页--------------------------------------------------
 
-        return "/user/accounts/profile";
+    /**
+     * 提供用户信息
+     * 更新用户信息
+     * @param request
+     * @param updateUser
+     * @return
+     */
+    @RequestMapping(value = "/accounts/profile")
+    public String profile(HttpServletRequest request,UserModel updateUser){
+        //根据email是否为空判断是请求页面还是请求更新
+        if (StringUtils.isEmpty(updateUser.getEmail())){
+            return "/user/accounts/profile";
+        }
+        //否则更新用户信息，只能更新姓名，电话，和关于自己，密码另外更新
+        userService.update(updateUser);
+        HttpSession session = request.getSession(true);
+        UserModel user = userService.getUsersByquery(updateUser);
+        if (user != null){
+            session.setAttribute(CommonConstants.USER_ATTRIBUTE,user);
+            return "redirect:/accounts/profile?"+ResultMsg.successMsg("更新成功").asUrlParams();
+        }else {
+            return "redirect:/accounts/profile?"+ResultMsg.errorMsg("更新失败").asUrlParams();
+        }
+
+
+    }
+
+
+    //-----------------------------------更新密码--------------------------------------------------
+    @RequestMapping(value = "/accounts/changePassword")
+    public String changePassword(UserModel updateUser,HttpServletRequest request){
+        if (StringUtils.isEmpty(updateUser.getEmail())){
+            return "/user/accounts/profile";
+        }
+        String password = request.getParameter("password");
+        String newPassword = request.getParameter("newPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+
+
+        ResultMsg resultMsg = UserHelper.validateResetPassword(password,newPassword,confirmPassword);
+        //表示校验通过
+        if (resultMsg.isSuccess()){
+            updateUser.setPasswd(HashUtils.encryPwd(newPassword));
+            userService.update(updateUser);
+                return "redirect:/accounts/signin?"+ResultMsg.successMsg("更新密码成功").asUrlParams();
+        }else {
+            return "redirect:/accounts/changePassword?"+ResultMsg.errorMsg("更新密码失败").asUrlParams();
+        }
     }
 }

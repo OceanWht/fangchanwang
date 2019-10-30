@@ -1,6 +1,10 @@
 package com.wht.springcloud.fangchanwang.model;
 
+import com.google.common.collect.Lists;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
+import java.util.List;
 
 public class HouseModel {
     private Long id;
@@ -38,6 +42,80 @@ public class HouseModel {
     private String address;
 
     private Boolean state;
+
+    private List<String> imgList = Lists.newArrayList();
+    private List<String> floorPlanList = Lists.newArrayList();
+    private List<MultipartFile> houseFiles;
+    private List<MultipartFile> floorPlanFiles;
+    private long userId;
+    private boolean bookmarked;
+    private List<Long> ids;
+
+    private String  sort = "time_desc";//price_desc,price_asc,time_desc
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public boolean isBookmarked() {
+        return bookmarked;
+    }
+
+    public void setBookmarked(boolean bookmarked) {
+        this.bookmarked = bookmarked;
+    }
+
+    public List<Long> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Long> ids) {
+        this.ids = ids;
+    }
+
+    public List<String> getImgList() {
+        return imgList;
+    }
+
+    public void setImgList(List<String> imgList) {
+        this.imgList = imgList;
+    }
+
+    public List<String> getFloorPlanList() {
+        return floorPlanList;
+    }
+
+    public void setFloorPlanList(List<String> floorPlanList) {
+        this.floorPlanList = floorPlanList;
+    }
+
+    public List<MultipartFile> getHouseFiles() {
+        return houseFiles;
+    }
+
+    public void setHouseFiles(List<MultipartFile> houseFiles) {
+        this.houseFiles = houseFiles;
+    }
+
+    public List<MultipartFile> getFloorPlanFiles() {
+        return floorPlanFiles;
+    }
+
+    public void setFloorPlanFiles(List<MultipartFile> floorPlanFiles) {
+        this.floorPlanFiles = floorPlanFiles;
+    }
 
     public Long getId() {
         return id;

@@ -3,9 +3,11 @@ package com.wht.springcloud.fangchanwang.mapper;
 import com.wht.springcloud.fangchanwang.model.CommunityModel;
 import com.wht.springcloud.fangchanwang.model.CommunityModelExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface CommunityModelMapper {
     int countByExample(CommunityModelExample example);
 

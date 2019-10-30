@@ -66,7 +66,7 @@
                         </div><!-- /.form-group -->
                         <div class="form-group">
                             <label for="form-create-account-confirm-password">确认密码:</label>
-                            <input type="password" class="form-control" id="form-create-account-confirm-password" name="confirmPasswd" required>
+                            <input type="password" class="form-control" id="form-create-account-confirm-password" name="confirmPassword" required>
                         </div><!-- /.form-group -->
                          <div class="form-group">
                             <label for="form-create-account-email">自我介绍:</label>
