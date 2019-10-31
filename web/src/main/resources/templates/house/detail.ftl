@@ -40,7 +40,7 @@
                         </header>
                         <section id="property-gallery">
                             <div class="owl-carousel property-carousel">
-                                <#list house.imageList as image> 
+                                <#list house.imgList as image>
                                    <div class="property-slide">
                                       <a href="${image}" class="image-popup">
                                          <div class="overlay"><h3>Front View</h3></div>
@@ -58,7 +58,7 @@
                                         <dt>地址</dt>
                                             <dd>${house.address}</dd>
                                         <dt>价格</dt>
-                                            <dd><span class="tag price">${house.priceStr}</span></dd>
+                                            <dd><span class="tag price">${house.price}</span></dd>
                                         <dt>类型:</dt>
                                             <dd>销售</dd>
                                         <dt>面积:</dt>
@@ -242,7 +242,7 @@
                                 </div><!-- /.form-group -->
                             </form><!-- /#form-map -->
                         </aside><!-- /#edit-search -->
-                        <aside id="featured-properties">
+                   <#--     <aside id="featured-properties">
                             <header><h3>热门房产</h3></header>
                             <#list recomHouses as house>
                             <div class="property small">
@@ -256,9 +256,9 @@
                                     <figure>${(house.address)!} </figure>
                                     <div class="tag price">￥${(house.price)!}</div>
                                 </div>
-                            </div><!-- /.property -->
+                            </div><!-- /.property &ndash;&gt;
                             </#list>
-                        </aside><!-- /#featured-properties -->
+                        </aside>--><!-- /#featured-properties -->
                        
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->

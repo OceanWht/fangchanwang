@@ -27,7 +27,7 @@ public class WebMvcConf implements WebMvcConfigurer {
         //按顺序添加即可实现顺序管控
         registry.addInterceptor(authInterceptor).excludePathPatterns("/static").addPathPatterns("/**");
 
-        String[] pathPatterns = new String[]{"/accounts/profile","/house/toAdd"};
+        String[] pathPatterns = new String[]{"/accounts/profile","/house/**"};
 
         //添加需要登录的请求
         registry.addInterceptor(authActionInterceptor).addPathPatterns(pathPatterns);

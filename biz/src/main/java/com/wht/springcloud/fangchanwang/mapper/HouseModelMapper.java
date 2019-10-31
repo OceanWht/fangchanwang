@@ -31,5 +31,5 @@ public interface HouseModelMapper {
 
     int updateByPrimaryKey(HouseModel record);
 
-    List<HouseModel> selectPageHouses(@Param("record") HouseModel houseModel, @Param("pageParams") PageParams pageParams );
+    List<HouseModel> selectPageHouses(@Param("house") HouseModel houseModel, @Param("pageParams") PageParams pageParams );
 }

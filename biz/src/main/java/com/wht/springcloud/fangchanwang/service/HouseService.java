@@ -61,11 +61,22 @@ public class HouseService {
 
         List<HouseModel> list = houseModelMapper.selectPageHouses(query, build);
         list.forEach(v -> {
-            v.setImages(prefix + query.getImages());
+            v.setFirstImg(prefix + v.getFirstImg());
             v.setImgList(v.getImgList().stream().map(img -> prefix + img).collect(Collectors.toList()));
             v.setFloorPlanList(v.getFloorPlanList().stream().map(pic -> prefix + pic).collect(Collectors.toList()));
         });
 
         return list;
+    }
+
+    public HouseModel queryHouseById(String id) {
+        HouseModel houseModel = houseModelMapper.selectByPrimaryKey(Long.valueOf(id));
+        if (houseModel != null){
+            houseModel.setImgList(houseModel.getImgList().stream().map(img -> prefix+ img).collect(Collectors.toList()));
+            houseModel.setFloorPlanList(houseModel.getFloorPlanList().stream().map(pic-> prefix+pic).collect(Collectors.toList()));
+            houseModel.setFirstImg(prefix+houseModel.getFirstImg());
+            houseModel.setFloorPlan(prefix+houseModel.getFloorPlan());
+        }
+        return  houseModel;
     }
 }

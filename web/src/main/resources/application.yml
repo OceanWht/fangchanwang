@@ -1,3 +1,6 @@
+management:
+  server:
+    port: 8098
 server:
   port: 8099
   #servlet:

@@ -1,6 +1,10 @@
 package com.wht.springcloud.fangchanwang.model;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
+import org.apache.logging.log4j.util.Strings;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
@@ -47,11 +51,22 @@ public class HouseModel {
     private List<String> floorPlanList = Lists.newArrayList();
     private List<MultipartFile> houseFiles;
     private List<MultipartFile> floorPlanFiles;
-    private long userId;
+    private Long userId;
     private boolean bookmarked;
     private List<Long> ids;
 
     private String  sort = "time_desc";//price_desc,price_asc,time_desc
+
+    private String firstImg;
+
+
+    public String getFirstImg() {
+        return firstImg;
+    }
+
+    public void setFirstImg(String firstImg) {
+        this.firstImg = firstImg;
+    }
 
     public String getSort() {
         return sort;
@@ -61,11 +76,11 @@ public class HouseModel {
         this.sort = sort;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -155,6 +170,14 @@ public class HouseModel {
 
     public void setImages(String images) {
         this.images = images == null ? null : images.trim();
+
+        if (!StringUtils.isEmpty(images)){
+            List<String> list = Splitter.on(",").splitToList(images);
+            if (!list.isEmpty()){
+                this.firstImg = list.get(0);
+                this.imgList = list;
+            }
+        }
     }
 
     public Integer getArea() {
@@ -211,6 +234,10 @@ public class HouseModel {
 
     public void setFloorPlan(String floorPlan) {
         this.floorPlan = floorPlan == null ? null : floorPlan.trim();
+        if (!StringUtils.isEmpty(floorPlan)){
+            List<String> list = Splitter.on(",").splitToList(floorPlan);
+            this.floorPlanList = list;
+        }
     }
 
     public String getTags() {
