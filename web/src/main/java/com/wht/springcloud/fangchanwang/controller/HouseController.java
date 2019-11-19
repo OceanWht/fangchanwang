@@ -41,7 +41,7 @@ public class HouseController {
 
         modelMap.put("ps",pageData);
         modelMap.put("vo",query);
-        return "house/listing";
+        return "/house/listing";
     }
 
     /**
